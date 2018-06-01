@@ -26,3 +26,10 @@ Once everything is running, you can visit `localhost:8080/cors-test-table.html` 
 Play around with the code a little and see what's going on - keep in mind that you'll need to restart Flask every time you change something server-side, but you should only have to refresh if you change anything on the client.
 
 Have fun!
+
+### Project Ideas
+
+- Add an endpoint that validates the `origin` header manually before reflecting it in the `Access-Control-Allow-Origin` header. Can you trick your validation?
+- What happens if you inject strange things into the `origin` header, which is then reflected back from the server?
+- What happens if you add the `Access-Control-Expose-Headers` header (see: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Expose-Headers)?
+- How do various cookie flags impact that cookie's use in cross-origin requests?
