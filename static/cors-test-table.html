@@ -1,0 +1,216 @@
+<html>
+  <head>
+    <script>
+      var funcIndex = -1;
+      var functions = [noneFalseFalse, noneFalseTrue, noneTrueFalse, noneTrueTrue, reflectedFalseFalse, reflectedFalseTrue, reflectedTrueFalse, reflectedTrueTrue, starFalseFalse, starFalseTrue, starTrueFalse, starTrueTrue];
+      var boxes = ["none-false-false", "none-false-true", "none-true-false", "none-true-true", "reflected-false-false", "reflected-false-true", "reflected-true-false", "reflected-true-true", "star-false-false", "star-false-true", "star-true-false", "star-true-true"];
+
+      reqListener();
+
+      function reqListener() {
+        if(funcIndex != -1) {
+          // if we're coming back from having sent a request already
+          console.log(this);
+          console.log("%cResponse headers:", "font-size: 16px");
+          console.log(this.getAllResponseHeaders());
+          console.log("%cResponse body:", "font-size: 16px");
+          console.log(this.responseText);
+
+          var selector = "#" + boxes[funcIndex];
+          el = document.querySelector(selector)
+          if(this.responseText != "") {
+            el.style.backgroundColor = "#00D855";
+          }
+          el.textContent = this.responseText;
+        }
+
+        funcIndex = funcIndex + 1;
+        if(funcIndex == functions.length) {
+          return;
+        }
+        else {
+          functions[funcIndex]();
+        }
+
+        // req_string = 'http://localhost?token=' + this.getResponseHeader('X-Secret-Token');
+        // var req = new XMLHttpRequest();
+        // req.open('get',req_string,true);
+        // req.send();
+      };
+
+        // Naming format:
+        // <allow-origin type>-<allow-credentials server>-<allow-credentials client>
+      function noneFalseFalse() {
+        console.log("%cAttempting GET localhost:5000/none without credentials flag set...", "color: red; font-size: 16px");
+        var req = new XMLHttpRequest();
+        req.onload = reqListener;
+        req.onerror = reqListener;
+        req.open('get','http://localhost:5000/none',true);
+        req.send();
+      }
+
+      function noneFalseTrue() {
+        console.log("%cAttempting GET localhost:5000/none with credentials flag set...", "color: red; font-size: 16px");
+        var req = new XMLHttpRequest();
+        req.onload = reqListener;
+        req.onerror = reqListener;
+        req.open('get','http://localhost:5000/none',true);
+        req.withCredentials = true;
+        req.send();
+      }
+
+      function noneTrueFalse() {
+        console.log("%cAttempting GET localhost:5000/none-with-creds without credentials flag set...", "color: red; font-size: 16px");
+        var req = new XMLHttpRequest();
+        req.onload = reqListener;
+        req.onerror = reqListener;
+        req.open('get','http://localhost:5000/none-with-creds',true);
+        req.send();
+      }
+
+      function noneTrueTrue() {
+        console.log("%cAttempting GET localhost:5000/none-with-creds with credentials flag set...", "color: red; font-size: 16px");
+        var req = new XMLHttpRequest();
+        req.onload = reqListener;
+        req.onerror = reqListener;
+        req.withCredentials = true;
+        req.open('get','http://localhost:5000/none-with-creds',true);
+        req.send();
+      }
+
+      function reflectedFalseFalse() {
+        console.log("%cAttempting GET localhost:5000/reflected without credentials flag set...", "color: red; font-size: 16px");
+        var req = new XMLHttpRequest();
+        req.onload = reqListener;
+        req.onerror = reqListener;
+        req.open('get','http://localhost:5000/reflected',true);
+        req.send();
+      }
+
+      function reflectedFalseTrue() {
+        console.log("%cAttempting GET localhost:5000/reflected with credentials flag set...", "color: red; font-size: 16px");
+        var req = new XMLHttpRequest();
+        req.onload = reqListener;
+        req.onerror = reqListener;
+        req.open('get','http://localhost:5000/reflected',true);
+        req.withCredentials = true;
+        req.send();
+      }
+
+      function reflectedTrueFalse() {
+        console.log("%cAttempting GET localhost:5000/reflected-with-creds without credentials flag set...", "color: red; font-size: 16px");
+        var req = new XMLHttpRequest();
+        req.onload = reqListener;
+        req.onerror = reqListener;
+        req.open('get','http://localhost:5000/reflected-with-creds',true);
+        req.send();
+      }
+
+      function reflectedTrueTrue() {
+        console.log("%cAttempting GET localhost:5000/reflected-with-creds with credentials flag set...", "color: red; font-size: 16px");
+        var req = new XMLHttpRequest();
+        req.onload = reqListener;
+        req.onerror = reqListener;
+        req.withCredentials = true;
+        req.open('get','http://localhost:5000/reflected-with-creds',true);
+        req.send();
+      }
+
+      function starFalseFalse() {
+        console.log("%cAttempting GET localhost:5000/star without credentials flag set...", "color: red; font-size: 16px");
+        var req = new XMLHttpRequest();
+        req.onload = reqListener;
+        req.onerror = reqListener;
+        req.open('get','http://localhost:5000/star',true);
+        req.send();
+      }
+
+      function starTrueFalse() {
+        console.log("%cAttempting GET localhost:5000/star-with-creds without credentials flag set...", "color: red; font-size: 16px");
+        var req = new XMLHttpRequest();
+        req.onload = reqListener;
+        req.onerror = reqListener;
+        req.open('get','http://localhost:5000/star-with-creds',true);
+        req.send();
+      }
+
+      function starFalseTrue() {
+        console.log("%cAttempting GET localhost:5000/star with credentials flag set...", "color: red; font-size: 16px");
+        var req = new XMLHttpRequest();
+        req.onload = reqListener;
+        req.onerror = reqListener;
+        req.withCredentials = true;
+        req.open('get','http://localhost:5000/star',true);
+        req.send();
+      }
+
+      function starTrueTrue() {
+        console.log("%cAttempting GET localhost:5000/star-with-creds with credentials flag set...", "color: red; font-size: 16px");
+        var req = new XMLHttpRequest();
+        req.onload = reqListener;
+        req.onerror = reqListener;
+        req.withCredentials = true;
+        req.open('get','http://localhost:5000/star-with-creds',true);
+        req.send();
+      }
+    </script>
+    <style type="text/css">
+      table {
+        padding: 10px;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th, td {
+        padding: 10px;
+        border: 1px solid #999;
+        text-align: center;
+      }
+      td {
+        background-color: #FF5A5A;
+      }
+    </style>
+  </head>
+
+  <body>
+    <table>
+      <tr>
+        <th></th>
+        <th>withCredentials: true</th>
+        <th>withCredentials: false</th>
+      </tr>
+      <tr>
+        <th>No Allow-Origin<br>Allow-Credentials: true</th>
+        <!-- The IDs are "<allow-origin type>-<allow-credentials server>-<allow-credentials client>" -->
+        <td id="none-true-true"></td>
+        <td id="none-true-false"></td>
+      </tr>
+      <tr>
+        <th>No Allow-Origin<br>Allow-Credentials: false</th>
+        <!-- The IDs are "<allow-origin type>-<allow-credentials server>-<allow-credentials client>" -->
+        <td id="none-false-true"></td>
+        <td id="none-false-false"></td>
+      </tr>
+      <tr>
+        <th>Allow-Origin: *<br>Allow-Credentials: true</th>
+        <!-- The IDs are "<allow-origin type>-<allow-credentials server>-<allow-credentials client>" -->
+        <td id="star-true-true"></td>
+        <td id="star-true-false"></td>
+      </tr>
+      <tr>
+        <th>Allow-Origin: *<br>Allow-Credentials: false</th>
+        <td id="star-false-true"></td>
+        <td id="star-false-false"></td>
+      </tr>
+      <tr>
+        <th>Allow-Origin: reflected<br>Allow-Credentials: true</th>
+        <td id="reflected-true-true"></td>
+        <td id="reflected-true-false"></td>
+      </tr>
+      <tr>
+        <th>Allow-Origin: reflected<br>Allow-Credentials: false</th>
+        <td id="reflected-false-true"></td>
+        <td id="reflected-false-false"></td>
+      </tr>
+    </table>
+  </body>
+</html>
